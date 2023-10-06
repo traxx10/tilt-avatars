@@ -13,6 +13,7 @@ docker_build(
     context='.',
     dockerfile='./deploy/api.dockerfile',
     only=['./api/'],
+    ignore=['./test/'],
     live_update=[
         sync('./api/', '/app/api/'),
         run(
@@ -48,7 +49,7 @@ docker_build(
     context='.',
     dockerfile='./deploy/web.dockerfile',
     only=['./web/'],
-    ignore=['./web/dist/'],
+    ignore=['./web/dist/', './test/'],
     live_update=[
         fall_back_on('./web/vite.config.js'),
         sync('./web/', '/app/'),
